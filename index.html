@@ -4,66 +4,235 @@ dir="rtl"> <head>
     name="viewport" 
     content="width=device-width, 
     initial-scale=1.0"> 
-    <title>NASA Earth Information 
-    Center</title> <link 
-    rel="stylesheet" 
-    href="css/style.css"> <script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-</head> <body> <div id="app"> 
-        <header class="header">
-            <div class="logo">🌍 
-            Earth Info Box</div> 
-            <div 
-            class="controls">
+    <title>Pitta - NASA Earth 
+    Box</title> <!-- Tailwind CSS 
+    لتصميم عصري وومضات برمجية 
+    احترافية --> <script 
+    src="https://jsdelivr.net"></script> 
+    <!-- Three.js لتشغيل مجسمات 
+    الـ 3D التفاعلية --> <script 
+    src="https://cloudflare.com"></script> 
+    <style>
+        /* ومضات وأنيميشن حركية 
+        احترافية خاصة بهوية Pitta 
+        */ .glow-effect { 
+        animation: pulseGlow 2s 
+        infinite alternate; } 
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 
+            5px rgba(168, 85, 
+            247, 0.4); } 100% { 
+            box-shadow: 0 0 20px 
+            rgba(168, 85, 247, 
+            0.8); }
+        }
+        .neon-text { text-shadow: 
+        0 0 8px #a855f7; }
+    </style> </head> <body 
+class="bg-slate-950 
+text-slate-100 min-h-screen 
+font-sans transition-colors 
+duration-300">
+    <!-- شريط التنقل المتضمن هويّة 
+    Pitta وأسماء المطورين --> 
+    <header class="border-b 
+    border-slate-800 
+    bg-slate-900/50 backdrop-blur 
+    p-4 sticky top-0 z-50">
+        <div class="max-content 
+        max-w-7xl mx-auto flex 
+        flex-wrap items-center 
+        justify-between gap-4">
+            <div> <h1 
+                class="text-xl 
+                font-bold 
+                neon-text" 
+                data-i18n="title">PITTA 
+                - صندوق معلومات 
+                الأرض</h1> <p 
+                class="text-xs 
+                text-slate-400 
+                mt-1" 
+                data-i18n="devs">تطوير: 
+                ماهر عامر ومحمد 
+                علاء</p>
+            </div>
+            
+            <!-- خانة البحث العام 
+            داخل الموقع --> <div 
+            class="flex 
+            items-center 
+            bg-slate-800 
+            rounded-lg px-3 
+            py-1.5 w-full 
+            sm:w-64">
                 <input 
                 type="text" 
                 id="searchInput" 
-                class="search-input"> 
+                placeholder="بحث..." 
+                class="bg-transparent 
+                border-none 
+                text-sm w-full 
+                focus:outline-none 
+                text-slate-200" 
+                data-i18n-placeholder="search">
+            </div> <!-- تخصيص 
+            اللغات وإعدادات 
+            الموقع --> <div 
+            class="flex 
+            items-center gap-4">
                 <select 
                 id="langSelect" 
-                class="lang-select">
+                class="bg-slate-800 
+                text-sm rounded 
+                px-2 py-1 border 
+                border-slate-700 
+                focus:outline-none">
                     <option 
                     value="ar">العربية</option> 
                     <option 
                     value="en">English</option> 
                     <option 
                     value="ja">日本語</option>
-                </select> </div> 
-        </header> <main 
-        class="main-content">
-            <section 
-            class="viewer-section">
+                </select> <button 
+                class="bg-slate-800 
+                hover:bg-slate-700 
+                p-2 rounded" 
+                title="Settings" 
+                data-i18n="settings">⚙️ 
+                الإعدادات</button>
+            </div> </div> 
+    </header> <!-- المحتويات 
+    مقسمة إلى خانات تفاعلية مشوقة 
+    --> <main class="max-w-7xl 
+    mx-auto p-4 grid grid-cols-1 
+    md:grid-cols-2 gap-6">
+        <!-- خانة 1: العرض ثلاثي 
+        الأبعاد 3D (تتأقلم مع ملف 
+        النانو مستقبلاً) --> 
+        <section 
+        class="bg-slate-900 
+        border border-slate-800 
+        rounded-xl p-4 
+        glow-effect flex flex-col 
+        min-h-[350px]">
+            <h2 class="text-lg 
+            font-semibold mb-2 
+            border-b 
+            border-slate-800 pb-2 
+            text-purple-400" 
+            data-i18n="box3d">المخطط 
+            ثلاثي الأبعاد (3D 
+            Model)</h2> <div 
+            id="canvas3d-container" 
+            class="w-full h-full 
+            bg-slate-950 rounded 
+            flex items-center 
+            justify-between 
+            relative 
+            overflow-hidden 
+            flex-1">
+                <p 
+                id="placeholder3d" 
+                class="text-xs 
+                text-slate-500 
+                absolute w-full 
+                text-center" 
+                data-i18n="waiting3d">بانتظار 
+                إضافة ملف الـ 3D 
+                الخاص بك لمشروع 
+                Pitta...</p>
+            </div> </section> 
+        <!-- خانة 2: النصوص 
+        التوضيحية التفاعلية 
+        المرتبطة بالبحث --> 
+        <section 
+        class="bg-slate-900 
+        border border-slate-800 
+        rounded-xl p-4 flex 
+        flex-col">
+            <h2 class="text-lg 
+            font-semibold mb-2 
+            border-b 
+            border-slate-800 pb-2 
+            text-purple-400" 
+            data-i18n="boxInfo">نصوص 
+            ومعلومات توضيحية</h2> 
+            <div class="space-y-3 
+            flex-1 
+            overflow-y-auto 
+            max-h-[300px] text-sm 
+            leading-relaxed" 
+            id="infoContent">
+                <p 
+                data-i18n="desc1">مرحبًا 
+                بك في منصة PITTA 
+                التفاعلية لمحاكاة 
+                بيانات كوكب الأرض 
+                الحية المستمدة من 
+                ناسا.</p> <p 
+                class="text-slate-400" 
+                data-i18n="desc2">يمكنك 
+                إدارة وتعديل هذا 
+                المشروع بالكامل 
+                عبر مستودع GitHub 
+                وتحديث ملفاتك 
+                مباشرة.</p>
+            </div> </section> 
+        <!-- خانة 3: عرض الصور 
+        والفيديوهات --> <section 
+        class="bg-slate-900 
+        border border-slate-800 
+        rounded-xl p-4">
+            <h2 class="text-lg 
+            font-semibold mb-2 
+            border-b 
+            border-slate-800 pb-2 
+            text-purple-400" 
+            data-i18n="boxMedia">الوسائط 
+            المرئية (فيديو 
+            وصور)</h2> <div 
+            class="space-y-4">
                 <div 
-                id="canvas-container"></div>
-            </section>
-            
-            <h1 
-            id="uiTitle"></h1> <p 
-            id="uiDesc"></p> <div 
-            class="media-grid">
-                <div 
-                class="media-card 
-                glow-effect">
-                    <h3 
-                    id="cardTitle3d"></h3> 
-                    <p 
-                    id="cardDesc3d"></p>
+                class="aspect-video 
+                bg-slate-950 
+                rounded 
+                overflow-hidden 
+                flex items-center 
+                justify-between 
+                border 
+                border-slate-800">
+                    <video 
+                    id="mainVideo" 
+                    controls 
+                    class="w-full 
+                    h-full 
+                    object-cover">
+                        <source 
+                        src="video.mp4" 
+                        type="video/mp4">
+                    </video> 
                 </div> <div 
-                class="media-card 
-                glow-effect">
-                    <h3 
-                    id="cardTitleVideo"></h3> 
-                    <p 
-                    id="cardDescVideo"></p>
-                </div> <div 
-                class="media-card 
-                glow-effect">
-                    <h3 
-                    id="cardTitleAudio"></h3> 
-                    <p 
-                    id="cardDescAudio"></p>
+                class="grid 
+                grid-cols-2 
+                gap-2">
+                    <div 
+                    class="h-20 
+                    bg-slate-800 
+                    rounded flex 
+                    items-center 
+                    justify-between 
+                    text-xs 
+                    text-slate-500">صورة 
+                    1</div> <div 
+                    class="h-20 
+                    bg-slate-800 
+                    rounded flex 
+                    items-center 
+                    justify-between 
+                    text-xs 
+                    text-slate-500">صورة 
+                    2</div>
                 </div> </div> 
-        </main>
-    </div> <script 
-    src="js/app.js"></script>
-</body> </html>
+        </section>
+        <!-- خانة 4:
