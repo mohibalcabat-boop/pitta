@@ -4,235 +4,231 @@ dir="rtl"> <head>
     name="viewport" 
     content="width=device-width, 
     initial-scale=1.0"> 
-    <title>Pitta - NASA Earth 
-    Box</title> <!-- Tailwind CSS 
-    لتصميم عصري وومضات برمجية 
-    احترافية --> <script 
-    src="https://jsdelivr.net"></script> 
-    <!-- Three.js لتشغيل مجسمات 
-    الـ 3D التفاعلية --> <script 
-    src="https://cloudflare.com"></script> 
-    <style>
-        /* ومضات وأنيميشن حركية 
-        احترافية خاصة بهوية Pitta 
-        */ .glow-effect { 
-        animation: pulseGlow 2s 
-        infinite alternate; } 
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 
-            5px rgba(168, 85, 
-            247, 0.4); } 100% { 
-            box-shadow: 0 0 20px 
-            rgba(168, 85, 247, 
-            0.8); }
+    <title>بوابة بيانات علوم 
+    الأرض - PITTA</title> <style>
+        :root {
+            --primary: #0f3d2e; 
+            --primary-light: 
+            #1b5e46;
+            --accent: #00a878; 
+            --bg: #f4f6f8; 
+            --card-bg: #ffffff; 
+            --text-main: #1e293b; 
+            --text-muted: 
+            #64748b;
+            --border: #cbd5e1;
         }
-        .neon-text { text-shadow: 
-        0 0 8px #a855f7; }
-    </style> </head> <body 
-class="bg-slate-950 
-text-slate-100 min-h-screen 
-font-sans transition-colors 
-duration-300">
-    <!-- شريط التنقل المتضمن هويّة 
-    Pitta وأسماء المطورين --> 
-    <header class="border-b 
-    border-slate-800 
-    bg-slate-900/50 backdrop-blur 
-    p-4 sticky top-0 z-50">
-        <div class="max-content 
-        max-w-7xl mx-auto flex 
-        flex-wrap items-center 
-        justify-between gap-4">
-            <div> <h1 
-                class="text-xl 
-                font-bold 
-                neon-text" 
-                data-i18n="title">PITTA 
-                - صندوق معلومات 
-                الأرض</h1> <p 
-                class="text-xs 
-                text-slate-400 
-                mt-1" 
-                data-i18n="devs">تطوير: 
-                ماهر عامر ومحمد 
-                علاء</p>
-            </div>
-            
-            <!-- خانة البحث العام 
-            داخل الموقع --> <div 
-            class="flex 
-            items-center 
-            bg-slate-800 
-            rounded-lg px-3 
-            py-1.5 w-full 
-            sm:w-64">
-                <input 
-                type="text" 
-                id="searchInput" 
-                placeholder="بحث..." 
-                class="bg-transparent 
-                border-none 
-                text-sm w-full 
-                focus:outline-none 
-                text-slate-200" 
-                data-i18n-placeholder="search">
-            </div> <!-- تخصيص 
-            اللغات وإعدادات 
-            الموقع --> <div 
-            class="flex 
-            items-center gap-4">
-                <select 
-                id="langSelect" 
-                class="bg-slate-800 
-                text-sm rounded 
-                px-2 py-1 border 
-                border-slate-700 
-                focus:outline-none">
-                    <option 
-                    value="ar">العربية</option> 
-                    <option 
-                    value="en">English</option> 
-                    <option 
-                    value="ja">日本語</option>
-                </select> <button 
-                class="bg-slate-800 
-                hover:bg-slate-700 
-                p-2 rounded" 
-                title="Settings" 
-                data-i18n="settings">⚙️ 
-                الإعدادات</button>
-            </div> </div> 
-    </header> <!-- المحتويات 
-    مقسمة إلى خانات تفاعلية مشوقة 
-    --> <main class="max-w-7xl 
-    mx-auto p-4 grid grid-cols-1 
-    md:grid-cols-2 gap-6">
-        <!-- خانة 1: العرض ثلاثي 
-        الأبعاد 3D (تتأقلم مع ملف 
-        النانو مستقبلاً) --> 
-        <section 
-        class="bg-slate-900 
-        border border-slate-800 
-        rounded-xl p-4 
-        glow-effect flex flex-col 
-        min-h-[350px]">
-            <h2 class="text-lg 
-            font-semibold mb-2 
-            border-b 
-            border-slate-800 pb-2 
-            text-purple-400" 
-            data-i18n="box3d">المخطط 
-            ثلاثي الأبعاد (3D 
-            Model)</h2> <div 
-            id="canvas3d-container" 
-            class="w-full h-full 
-            bg-slate-950 rounded 
-            flex items-center 
-            justify-between 
-            relative 
-            overflow-hidden 
-            flex-1">
-                <p 
-                id="placeholder3d" 
-                class="text-xs 
-                text-slate-500 
-                absolute w-full 
-                text-center" 
-                data-i18n="waiting3d">بانتظار 
-                إضافة ملف الـ 3D 
-                الخاص بك لمشروع 
-                Pitta...</p>
-            </div> </section> 
-        <!-- خانة 2: النصوص 
-        التوضيحية التفاعلية 
-        المرتبطة بالبحث --> 
-        <section 
-        class="bg-slate-900 
-        border border-slate-800 
-        rounded-xl p-4 flex 
-        flex-col">
-            <h2 class="text-lg 
-            font-semibold mb-2 
-            border-b 
-            border-slate-800 pb-2 
-            text-purple-400" 
-            data-i18n="boxInfo">نصوص 
-            ومعلومات توضيحية</h2> 
-            <div class="space-y-3 
-            flex-1 
-            overflow-y-auto 
-            max-h-[300px] text-sm 
-            leading-relaxed" 
-            id="infoContent">
-                <p 
-                data-i18n="desc1">مرحبًا 
-                بك في منصة PITTA 
-                التفاعلية لمحاكاة 
-                بيانات كوكب الأرض 
-                الحية المستمدة من 
-                ناسا.</p> <p 
-                class="text-slate-400" 
-                data-i18n="desc2">يمكنك 
-                إدارة وتعديل هذا 
-                المشروع بالكامل 
-                عبر مستودع GitHub 
-                وتحديث ملفاتك 
-                مباشرة.</p>
-            </div> </section> 
-        <!-- خانة 3: عرض الصور 
-        والفيديوهات --> <section 
-        class="bg-slate-900 
-        border border-slate-800 
-        rounded-xl p-4">
-            <h2 class="text-lg 
-            font-semibold mb-2 
-            border-b 
-            border-slate-800 pb-2 
-            text-purple-400" 
-            data-i18n="boxMedia">الوسائط 
-            المرئية (فيديو 
-            وصور)</h2> <div 
-            class="space-y-4">
-                <div 
-                class="aspect-video 
-                bg-slate-950 
-                rounded 
-                overflow-hidden 
-                flex items-center 
-                justify-between 
-                border 
-                border-slate-800">
-                    <video 
-                    id="mainVideo" 
-                    controls 
-                    class="w-full 
-                    h-full 
-                    object-cover">
-                        <source 
-                        src="video.mp4" 
-                        type="video/mp4">
-                    </video> 
-                </div> <div 
-                class="grid 
-                grid-cols-2 
-                gap-2">
-                    <div 
-                    class="h-20 
-                    bg-slate-800 
-                    rounded flex 
-                    items-center 
-                    justify-between 
-                    text-xs 
-                    text-slate-500">صورة 
-                    1</div> <div 
-                    class="h-20 
-                    bg-slate-800 
-                    rounded flex 
-                    items-center 
-                    justify-between 
-                    text-xs 
-                    text-slate-500">صورة 
-                    2</div>
-                </div> </div> 
-        </section>
-        <!-- خانة 4:
+        * { box-sizing: 
+        border-box; margin: 0; 
+        padding: 0; font-family: 
+        'Segoe UI', Tahoma, 
+        Geneva, Verdana, 
+        sans-serif; } html { 
+        scroll-behavior: smooth; 
+        }
+        body { background-color: 
+        var(--bg); color: 
+        var(--text-main); 
+        line-height: 1.8; 
+        padding-top: 70px; } /* 
+        شريط التنقل العلوي 
+        والقائمة الجانبية */ 
+        .navbar {
+            position: fixed; top: 
+            0; left: 0; width: 
+            100%; height: 65px; 
+            background: 
+            var(--primary); 
+            color: #fff; display: 
+            flex; align-items: 
+            center; 
+            justify-content: 
+            space-between; 
+            padding: 0 20px; 
+            z-index: 1000; 
+            box-shadow: 0 2px 
+            10px rgba(0,0,0,0.2);
+        }
+        .hamburger-btn { 
+            background: none; 
+            border: none; color: 
+            #fff; font-size: 
+            2rem; cursor: 
+            pointer; padding: 5px 
+            10px;
+        }
+        .nav-title { font-weight: 
+        800; font-size: 1.1rem; 
+        letter-spacing: 0.5px; } 
+        /* الدرج المنبثق الجانبي 
+        (القائمة الجانبية 
+        الحقيقية) */ .sidebar {
+            position: fixed; top: 
+            0; right: -320px; 
+            width: 300px; height: 
+            100%; background: 
+            #ffffff; z-index: 
+            99999; padding: 25px; 
+            box-shadow: -5px 0 
+            25px rgba(0,0,0,0.3); 
+            transition: right 
+            0.3s ease; 
+            overflow-y: auto;
+        }
+        .sidebar.open { right: 0; 
+        }
+        .overlay { display: none; 
+            position: fixed; 
+            inset: 0; background: 
+            rgba(0,0,0,0.5); 
+            z-index: 99988;
+        }
+        .overlay.active { 
+        display: block; } 
+        .sidebar-header {
+            display: flex; 
+            justify-content: 
+            space-between; 
+            align-items: center; 
+            border-bottom: 2px 
+            solid var(--bg); 
+            padding-bottom: 12px; 
+            margin-bottom: 20px;
+        }
+        .sidebar-header h3 { 
+        color: var(--primary); 
+        font-size: 1.2rem; } 
+        .close-btn { background: 
+        none; border: none; 
+        font-size: 2rem; color: 
+        #64748b; cursor: pointer; 
+        line-height: 1; }
+        
+        .sidebar-links { 
+        list-style: none; } 
+        .sidebar-links li { 
+        margin-bottom: 10px; } 
+        .side-btn {
+            width: 100%; 
+            text-align: right; 
+            display: block; 
+            padding: 12px 15px; 
+            background: #f1f5f9; 
+            color: 
+            var(--text-main); 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 0.95rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: 0.2s;
+        }
+        .side-btn:hover { 
+        background: 
+        var(--primary); color: 
+        #fff; }
+        /* المحتوى الرئيسي */ 
+        .container { max-width: 
+        900px; margin: 0 auto; 
+        padding: 20px; } /* صندوق 
+        اسم الفريق والمشروع */ 
+        .project-box {
+            background: 
+            var(--card-bg); 
+            border: 2px solid 
+            var(--primary); 
+            border-radius: 12px; 
+            padding: 25px; 
+            text-align: center; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 
+            12px 
+            rgba(0,0,0,0.05);
+        }
+        .project-box h1 { color: 
+        var(--primary); 
+        font-size: 1.8rem; 
+        font-weight: 900; 
+        margin-bottom: 5px; } 
+        .project-box p { color: 
+        var(--text-muted); 
+        font-size: 1rem; } /* 
+        صندوق المطورين المزخرف 
+        كما طلبته */ 
+        .developers-box {
+            background: 
+            linear-gradient(135deg, 
+            var(--primary), 
+            var(--primary-light)); 
+            color: #fff; border: 
+            3px double #ffffff; 
+            border-radius: 12px; 
+            padding: 20px; 
+            text-align: center; 
+            margin-bottom: 35px; 
+            box-shadow: 0 6px 
+            18px 
+            rgba(0,0,0,0.15);
+        }
+        .developers-box h2 { 
+        font-size: 1.4rem; 
+        font-weight: 800; 
+        letter-spacing: 1px; } /* 
+        بطاقات المواضيع (ترتيب 
+        عمودي كما في الرسم: فقرة، 
+        موضوع، صورة) */ 
+        .topic-card {
+            background: 
+            var(--card-bg); 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin-bottom: 35px; 
+            box-shadow: 0 4px 
+            15px 
+            rgba(0,0,0,0.06); 
+            border-right: 6px 
+            solid var(--accent);
+        }
+        
+        /* شارة الفقرة العلوية */ 
+        .badge-para {
+            background: 
+            var(--primary); 
+            color: #fff; display: 
+            inline-block; 
+            padding: 6px 16px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            margin-bottom: 15px;
+        }
+        /* موضوع الفقرة (عنوان 
+        واضح وصريح) */ 
+        .topic-card h3 {
+            color: 
+            var(--text-main); 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            margin-bottom: 15px; 
+            line-height: 1.4;
+        }
+        /* النص الشرحي المفصل */ 
+        .topic-desc {
+            color: 
+            var(--text-main); 
+            font-size: 1.05rem; 
+            text-align: justify; 
+            margin-bottom: 20px;
+        }
+        /* الصورة التوضيحية تماماً 
+        تحت النص */ 
+        .image-container {
+            background: #0f172a; 
+            border: 1px solid 
+            var(--border); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            text-align: center; 
+            margin-top: 15px;
+        }
+        .image-container img { width: 100%; max-height: 420p
