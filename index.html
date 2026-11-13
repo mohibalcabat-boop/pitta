@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Team Pitta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#f3ecdf;--surface:#fbf7ef;--ink:#2b2418;--mute:#6b5d49;--line:#ddd0b9;--accent:#b4532a;--teal:#2f6f6a;--ice:#eadfca;--hero:#3a2e1f;--herotxt:#f6efe2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#1c1712;--surface:#262019;--ink:#f1e8d8;--mute:#b8a98f;--line:#3b3226;--accent:#e2784a;--teal:#7cc0b3;--ice:#31291f;--hero:#120e0a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#1c1712;--surface:#262019;--ink:#f1e8d8;--mute:#b8a98f;--line:#3b3226;--accent:#e2784a;--teal:#7cc0b3;--ice:#31291f;--hero:#120e0a}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "Source Sans 3",system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.15;margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero{background:radial-gradient(circle at 78% 40%,#8a6a3f 0,var(--hero) 62%);color:var(--herotxt);padding:64px 20px 56px}
+.wrap{max-width:1040px;margin:0 auto}
+.hero .wrap{display:grid;gap:32px;grid-template-columns:1.2fr .8fr;align-items:center}
+.hero h1{font-size:clamp(34px,6vw,60px)}
+.hero p{max-width:52ch;color:#e3d6bd;font-size:19px}
+.team{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.team span{border:1px solid #8a6f4d;padding:8px 14px;border-radius:30px;font-weight:600}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:600}
+.globe{width:100%;max-width:340px;margin:auto;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:-34px auto 0;max-width:1040px;padding:0 20px;position:relative}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.stat b{font:700 34px Sora,sans-serif;color:var(--teal);display:block}
+.stat small{color:var(--mute)}
+section.topic{padding:72px 20px 8px}
+.topic h2{font-size:clamp(28px,4.5vw,42px);margin-bottom:12px}
+.lead{max-width:62ch;color:var(--mute);font-size:19px;margin:0 0 28px}
+figure{margin:0 0 28px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+figure svg{display:block;width:100%;height:auto;max-height:300px}
+figcaption{padding:10px 16px;color:var(--mute);font-size:15px;border-top:1px solid var(--line)}
+.acc{border-top:1px solid var(--line)}
+.acc button{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:600 19px "Source Sans 3",sans-serif;padding:16px 4px;cursor:pointer;display:flex;justify-content:space-between;gap:12px}
+.acc button::after{content:"+";color:var(--accent);font-size:24px;line-height:1;transition:transform .2s}
+.acc button[aria-expanded=true]::after{transform:rotate(45deg)}
+.acc .pan{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc .pan p{margin:0;padding:14px 4px 20px;max-width:66ch;color:var(--mute)}
+.lab{margin:28px 0 0;background:var(--ice);border-radius:14px;padding:22px}
+.lab h3{font-size:22px;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chips button{border:1px solid var(--teal);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:20px;cursor:pointer;font:600 15px inherit}
+.chips button[aria-pressed=true]{background:var(--teal);color:#fff}
+.meter{height:22px;background:#3a2e1f;border-radius:11px;overflow:hidden}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,#ffe28a,#fff);width:0;transition:width .5s}
+footer{margin-top:80px;background:var(--hero);color:#e3d6bd;padding:36px 20px;text-align:center}
+footer b{color:#fff}
+@media (max-width:720px){.hero .wrap{grid-template-columns:1fr}.globe{max-width:220px;order:-1}.hero{padding-top:40px}}
+@media (prefers-reduced-motion:reduce){.globe{animation:none}html{scroll-behavior:auto}.acc .pan,.meter i{transition:none}}
+
+body{display:grid;grid-template-columns:270px minmax(0,1fr)}
+.page{min-width:0}
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--hero);color:var(--herotxt);padding:calc(env(safe-area-inset-top,0px) + 22px) 16px 22px;display:flex;flex-direction:column;gap:14px}
+.brand{font:700 24px Sora,sans-serif}
+.side input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #6b5538;background:#00000030;color:inherit;font:inherit}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;justify-content:space-between;color:inherit;text-decoration:none;padding:9px 12px;border-radius:8px;opacity:.85}
+.side nav a small{opacity:.6}
+.side nav a.on{background:var(--accent);color:#fff;opacity:1}
+.crew{margin-top:auto;font-size:15px;color:#e3d6bd;border-top:1px solid #5a4630;padding-top:14px}
+.crew button{margin-top:12px;display:block;width:100%;border:1px solid #8a6f4d;background:none;color:inherit;border-radius:8px;padding:8px;cursor:pointer}
+.burger{display:none}
+@media (max-width:860px){body{display:block}body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hero);z-index:31}
+.side{position:fixed;inset:0 auto 0 0;width:280px;height:100%;z-index:30;transform:translateX(-100%);transition:transform .25s}.side.open{transform:none}
+.burger{display:block;position:sticky;top:env(safe-area-inset-top,0px);z-index:25;width:100%;background:var(--hero);color:var(--herotxt);border:0;text-align:left;padding:14px 18px;font:600 16px Sora,sans-serif}}
+</style>
+</head>
+<body>
+<button class="burger" id="burger" aria-label="Open menu">☰ Team Pitta</button>
+<aside class="side" id="side">
+<div class="brand">Team Pitta</div>
+<input id="q" type="search" placeholder="Search topics" aria-label="Search topics">
+<nav id="nav" aria-label="Sections"></nav>
+<div class="crew">Mahir Amer<br>Mohammed Alaa<br><button id="th" aria-label="Toggle dark mode">Switch theme</button></div>
+</aside>
+<div class="page">
+
+<header class="hero"><div class="wrap">
+<div>
+<h1>Earth as one connected system</h1>
+<p>Our NASA hackathon project turns Earth-observation science into a clear, explorable guide: from rivers and glaciers to oceans, life, air and the rock beneath our feet.</p>
+<div class="team"><span>Mahir Amer</span><span>Mohammed Alaa</span></div>
+<a class="btn" href="#water">Start exploring</a>
+</div>
+<svg class="globe" viewBox="0 0 200 200" role="img" aria-label="Stylised Earth globe"><defs><radialGradient id="g" cx=".35" cy=".3"><stop offset="0" stop-color="#4fc3dd"/><stop offset="1" stop-color="#0c4f78"/></radialGradient></defs><circle cx="100" cy="100" r="92" fill="url(#g)"/><g fill="#6fbf73" opacity=".9"><path d="M50 60q25-18 40 0t-6 30-34 4z"/><path d="M110 100q30-12 44 10t-14 42-36-8z"/><path d="M70 130q14-6 18 10t-12 18z"/></g><circle cx="100" cy="100" r="92" fill="none" stroke="#9fe0ef" stroke-opacity=".4" stroke-width="3"/></svg>
+</div></header>
+
+<div class="stats">
+<div class="stat"><b data-n="70" data-s="%+">0</b><small>of Earth is ocean</small></div>
+<div class="stat"><b data-n="97" data-s="%">0</b><small>of water is in the ocean</small></div>
+<div class="stat"><b data-n="8" data-s=" in">0</b><small>sea-level rise since 1880</small></div>
+<div class="stat"><b data-n="1.18" data-s="°C">0</b><small>warming since the late 1800s</small></div>
+</div>
+
+<main id="main"></main>
+
+<footer><p><b>Team Pitta</b></p><p>Built by Mahir Amer and Mohammed Alaa</p></footer>
+</div>
+
+<script>const S={
+water:'<svg viewBox="0 0 800 300"><defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe3f2"/><stop offset="1" stop-color="#eaf6fa"/></linearGradient></defs><rect width="800" height="300" fill="url(#a)"/><path d="M0 200q120-70 240-20t240-10 320-50v180H0z" fill="#6aa86b"/><path d="M0 250q200-60 400-10t400-20v80H0z" fill="#2c8fb5"/><path d="M0 270q200-40 400 0t400-10" stroke="#fff" stroke-opacity=".5" stroke-width="3" fill="none"/><g fill="#fff" opacity=".9"><ellipse cx="140" cy="60" rx="50" ry="16"/><ellipse cx="600" cy="80" rx="64" ry="18"/></g><path d="M300 120l10 22 10-22z" fill="#2c8fb5"/></svg>',
+cryo:'<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#cfe9f6"/><path d="M0 300V190l120-110 90 70 110-90 160 150 120-80 200 120v50z" fill="#fff"/><path d="M0 300V230l150-60 140 50 140-40 160 60 210-50v110z" fill="#bfdff0"/><path d="M0 270q200-30 400 0t400-8v38H0z" fill="#1e6f97"/><path d="M560 252l30-50 40 50z" fill="#fff"/></svg>',
+ocean:'<svg viewBox="0 0 800 300"><defs><linearGradient id="o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3aa6c8"/><stop offset="1" stop-color="#0a3f66"/></linearGradient></defs><rect width="800" height="300" fill="url(#o)"/><g fill="none" stroke="#bfeaf7" stroke-width="4" stroke-linecap="round" opacity=".8"><path d="M20 80q50-30 100 0t100 0t100 0t100 0t100 0t100 0t100 0"/><path d="M0 150q50-30 100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0"/><path d="M20 220q50-30 100 0t100 0t100 0t100 0t100 0t100 0"/></g><circle cx="650" cy="50" r="22" fill="#ffd36b"/></svg>',
+life:'<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#d8efd9"/><circle cx="660" cy="60" r="30" fill="#ffd36b"/><path d="M0 230q200-60 400-10t400-40v120H0z" fill="#4c9a58"/><g fill="#2f7a42"><path d="M120 230l30-90 30 90z"/><path d="M200 235l24-70 24 70z"/><path d="M520 225l34-100 34 100z"/><path d="M610 232l24-64 24 64z"/></g><g fill="#7fc47d"><circle cx="360" cy="200" r="22"/><circle cx="395" cy="206" r="18"/></g></svg>',
+air:'<svg viewBox="0 0 800 300"><defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c5f95"/><stop offset="1" stop-color="#bfe3f4"/></linearGradient></defs><rect width="800" height="300" fill="url(#s)"/><g fill="#fff"><ellipse cx="180" cy="110" rx="90" ry="30"/><ellipse cx="240" cy="90" rx="60" ry="30"/><ellipse cx="560" cy="170" rx="110" ry="34"/><ellipse cx="620" cy="146" rx="70" ry="32"/></g><path d="M0 280q300-60 800-10v30H0z" fill="#3b7a58"/></svg>',
+solid:'<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#f1d9bd"/><path d="M0 120h800v40H0z" fill="#b77b4e"/><path d="M0 160h800v140H0z" fill="#d25a3a"/><path d="M400 160l-60 140h120z" fill="#ffb347"/><path d="M0 120l120-70 90 40 100-60 120 90H0z" fill="#8c6a52"/><path d="M450 120l110-80 90 50 150-30v60z" fill="#a0785d"/></svg>'};
+const T=[
+{id:'water',nav:'Water',title:'Freshwater',lead:'Every community depends on water: where it flows, how much there is and how it is used. NASA satellites and stream gauges together show the global picture.',cap:'Rivers, lakes and groundwater form the hydrological cycle.',items:[
+['River discharge','Discharge is the volume of water passing a point in a river each second, measured in cubic meters per second. NASA’s SWOT mission bounces radar off water surfaces to measure height, and GRACE and GRACE-FO track tiny changes in gravity that reveal water movement. Together with stream gauges, they support flood forecasts and nutrient studies.'],
+['Aquifers and groundwater','Aquifers are underground rock layers that hold the fresh water we reach through wells and springs. Irrigation often drains them faster than they recharge, and GRACE measures those gains and losses from space.'],
+['Floods','Floods are among the costliest natural disasters. NOAA estimates US flooding cost over $200 billion between 1980 and 2024, and heavy rainfall events are changing how often and how severely floods strike.'],
+['Water management','Dams, groundwater protection rules and irrigation monitoring all aim to keep people safe while using water efficiently. Satellite data helps managers do this across borders.'],
+['Water temperature','Warm water drives fish decline, coral bleaching and toxic algae blooms. Warmer oceans also feed stronger storms and raise sea level through thermal expansion.']]},
+{id:'ice',nav:'Ice and snow',title:'The cryosphere',lead:'About 15 million square kilometers of Earth is covered by ice and snow. It reflects sunlight, stores fresh water and reacts fast to a warming planet.',cap:'Glaciers and sea ice shape coastlines and the climate.',lab:1,items:[
+['Glaciers and ice sheets','Glaciers are “rivers of ice” that flow under gravity. They hold nearly 70% of the world’s fresh water; if all land ice melted, sea level would rise about 70 meters. Ice sheets can move from a few centimeters a year at the center to 15 kilometers a year near the coast.'],
+['Icebergs','Icebergs break off glaciers or ice shelves. They are tabular (flat-topped) or non-tabular (domes and spires). Antarctic bergs have reached 80 kilometers in length.'],
+['Lake and sea ice','Lake ice forms near the shore at 0°C. Salty or turbulent water must cool to about -2°C and forms slushy frazil first. Melt ponds lower reflectivity and speed up melting.'],
+['Permafrost','Permafrost is ground that stays frozen all year. As it thaws it releases carbon and gases and can trigger landslides and erosion that threaten infrastructure.'],
+['Snow and runoff','Snowpack cools the planet and feeds rivers that billions of people use. Too much runoff brings floods, too little brings drought and fire.']]},
+{id:'ocean',nav:'Oceans',title:'The global ocean',lead:'The ocean covers over 70% of the surface, makes oxygen, stores carbon and moves heat around the planet.',cap:'Currents, waves and winds are tracked by radar from orbit.',items:[
+['Sea level rise','Tide gauges go back to 1807, and satellite altimetry since the 1990s confirms that sea level is rising faster over time. Thermal expansion and melting land ice are the two main causes.'],
+['Currents','Wind, temperature, salt, tides and Earth’s rotation drive currents. The Gulf Stream carries warm water to northwest Europe, keeping it milder than other places at the same latitude.'],
+['Waves and tsunamis','SWOT measures surface height from tiny ripples to tsunamis and slow Rossby waves that influence El Niño. Between 1998 and 2017, tsunamis killed more than 250,000 people.'],
+['Winds','CYGNSS tracks ocean winds by reading the capillary waves they create, improving storm forecasts and shipping safety.'],
+['Ocean color','Light reflected from the water reveals chlorophyll and sediment. That helps detect harmful algal blooms that can contaminate seafood.']]},
+{id:'life',nav:'Life',title:'The biosphere',lead:'Millions of species live in forests, grasslands, deserts, wetlands and oceans. Healthy, diverse ecosystems store carbon, clean water and recycle nutrients.',cap:'Vegetation, soil and wildlife make up each biome.',items:[
+['Vegetation indices','NDVI compares near-infrared and red light, from -1 to 1: low values mean rock, sand or snow, high values mean dense green plants. EVI, LAI and FPAR add detail on canopy and photosynthesis.'],
+['Wetlands','Wetlands buffer waves, trap pollution and shelter many species, but when drained they release carbon and methane that warm the climate.'],
+['Biodiversity loss','Over half of the world’s biodiversity has disappeared since 1970 and about a million species face extinction, mostly because of farming, pesticides, invasive species and urban growth.'],
+['Invasive species','The emerald ash borer, arriving in 2002, has killed tens of millions of North American ash trees. Satellites cannot see the insect, but they map slope, moisture and vegetation to show where such species may spread.'],
+['The carbon cycle','Carbon moves between air, land, ocean and life through photosynthesis, respiration and burning. CO2 is the main atmospheric form and helps regulate temperature.']]},
+{id:'air',nav:'Atmosphere',title:'The atmosphere',lead:'A thin layer of gas about 60 miles high gives us air to breathe, blocks harmful ultraviolet light and keeps Earth warm enough to live on.',cap:'Clouds, moisture and storms are tracked daily.',items:[
+['Clouds and fog','A typical cumulus cloud can weigh over a million pounds. Clouds both cool and warm the planet, and fog, which is a cloud at ground level, can hurt travel yet water coastal plants.'],
+['Atmospheric rivers','These narrow corridors of moisture are the largest freshwater transport on Earth. They bring vital rain and snow to the western US but can also cause floods and mudslides.'],
+['Drought','Drought comes from shifts such as El Niño and La Niña, deforestation and climate change. Around 14% of the US is in severe or extreme drought in a typical year.'],
+['Wildfire','Fire releases smoke and carbon but also nutrients to the soil. In 2022 the US saw 68,988 wildfires burn over 7.5 million acres.'],
+['Climate change','Global temperature has risen about 1.18°C since the late 19th century, and the IPCC states that human influence is the principal driver of many changes seen across air, ocean and ice.']]},
+{id:'solid',nav:'Solid Earth',title:'Solid Earth',lead:'Deep processes, the Sun and gravity shape the ground we stand on. Satellite and ground instruments measure how the surface moves.',cap:'Plates collide to build mountains and volcanoes.',items:[
+['Tectonics','The crust is 20 to 80 kilometers thick and is split into 15 to 20 plates that move about 1.5 centimeters a year, producing volcanoes, earthquakes and mountain ranges.'],
+['Gravity','Gravity is not perfectly uniform: mountains, trenches and even underground water movement change it slightly, which is what GRACE measures.'],
+['Geodesy','Geodesy measures Earth’s shape, gravity and orientation in space. It tracks plate movement after earthquakes and changes in ocean topography.'],
+['Earthquakes and landslides','Earthquakes are only the third most common disaster but kill the most people. Landslides pull rock and mud down slopes and can destroy whole communities.']]}];
+
+const add=(id,items)=>T.find(t=>t.id===id).items.push(...items);
+S.earth='<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#0b1d33"/><g fill="#fff" opacity=".7"><circle cx="60" cy="40" r="2"/><circle cx="300" cy="30" r="2"/><circle cx="700" cy="60" r="2"/><circle cx="500" cy="270" r="2"/></g><circle cx="400" cy="150" r="100" fill="#2c8fb5"/><path d="M340 110q30-24 54 0t-10 36-44 0zM410 160q34-14 50 14t-24 36z" fill="#6fbf73"/><ellipse cx="400" cy="150" rx="190" ry="50" fill="none" stroke="#9fe0ef" stroke-opacity=".5" stroke-dasharray="6 8"/></svg>';
+S.sun='<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#07122a"/><circle cx="90" cy="150" r="70" fill="#ffb02e"/><path d="M170 120h300M170 150h300M170 180h300" stroke="#ffb02e" stroke-width="4" opacity=".5"/><circle cx="600" cy="150" r="80" fill="#2c8fb5"/><path d="M520 150a80 80 0 0 1 160 0" fill="none" stroke="#5be3a0" stroke-width="8" opacity=".8"/><path d="M500 80q-40 70 0 140" fill="none" stroke="#9fe0ef" stroke-width="4"/></svg>';
+S.people='<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#dbe9f3"/><g fill="#5a7a96"><rect x="80" y="120" width="70" height="180"/><rect x="170" y="70" width="80" height="230"/><rect x="270" y="140" width="60" height="160"/><rect x="480" y="100" width="90" height="200"/><rect x="590" y="150" width="70" height="150"/></g><path d="M0 280h800v20H0z" fill="#4c9a58"/><g fill="#ffd36b"><rect x="190" y="100" width="12" height="12"/><rect x="215" y="140" width="12" height="12"/><rect x="505" y="130" width="12" height="12"/></g></svg>';
+
+T.unshift({id:'earth',nav:'Earth science',title:'The map of Earth science',lead:'Earth science studies the planet’s structure, materials, processes and history. It has four main branches, linked by many related fields.',cap:'Four branches, one planet.',items:[
+['Geology: the solid Earth','Geology studies rocks, minerals and landforms. Its fields include mineralogy, petrology, structural geology, volcanology, seismology, paleontology, stratigraphy, geomorphology and economic geology (ores, oil, gas and coal).'],
+['Oceanography: the water bodies','Physical oceanography covers currents, waves and tides; chemical studies salinity; biological studies marine life; and marine geology studies the seafloor, trenches and ridges.'],
+['Meteorology and climatology: the atmosphere','Meteorology handles short-term weather, storms and forecasts. Climatology studies long-term patterns and change. Atmospheric chemistry covers gases, ozone and air pollution.'],
+['Astronomy and planetary science: Earth in space','This branch covers seasons, day and night and the Moon’s effect on tides, and compares Earth with other planets to learn how planets form and evolve.'],
+['Why connect them?','Water, ice, life, air and rock constantly exchange energy and matter. Understanding one sphere means following its links to the others.']]});
+
+add('water',[
+['Global water use','UN figures show water use is growing about twice as fast as population. Groundwater is falling where irrigation outpaces recharge, and many rivers and lakes cross borders, so satellite data helps countries share one picture.'],
+['Sediment','Sediment is loose particles from eroded rock, moved by rivers, wind, floods and storms. It can refresh farmland, but too much clogs reservoirs and contaminated sediment can poison wildlife.'],
+['Estuaries','Estuaries are where river water meets the sea, like the Chesapeake Bay. They are highly productive habitats that filter pollutants and absorb floods and storm surges.'],
+['Flood trends','US floods have grown in the Northeast and Midwest and eased in the Rockies and West, matching changes in heavy rainfall. New England has seen more frequent floods since the 1940s.']]);
+add('ice',[
+['Why ice and snow matter','Bright snow and ice have high albedo and reflect sunlight. As they shrink, more heat is absorbed. Their runoff also sets river timing and flood risk for billions of people.'],
+['What NASA measures','Satellites track how much polar ice is melting, how dust and soot darken snow, and how permafrost loss could release stored carbon.'],
+['Glacier mass balance','Mass balance is a glacier’s yearly net gain or loss. Snowfall adds mass; melting and calving remove it. It shows how much fresh water ice can supply and how much it adds to sea level.'],
+['Lake ice turnover','Cold air cools the surface water until it sinks and pushes warmer water up. Once the surface freezes, the ice insulates the lake. Freeze and melt dates are key climate indicators.'],
+['Ice thickness','Ice ranges from a few sheets of paper to over 20 meters thick. Thickness informs safe routes, animal behavior and links to climate and sea level.'],
+['Ice age stages','Ocean ice is new under 10 cm, young at 10 to 30 cm, first-year above 30 cm, and multiyear once it survives a summer, usually 2 to 4 meters thick.']]);
+add('ocean',[
+['Ocean overview','The ocean holds about 97% of Earth’s water. NASA data capture circulation, winds, heat exchange, salinity, sea surface temperature and water quality.'],
+['Surface topography','Altimeters time microwave pulses bounced off the sea to find its height above the geoid. This reveals currents and tides and helps forecast El Niño and La Niña.'],
+['Sea level indicator','Sea level has risen about eight inches since 1880 and the rate is accelerating. It is a key climate indicator beyond temperature.'],
+['Tsunamis','Earthquakes and eruptions push water into waves that can exceed 500 mph in the open sea. The 2004 Indian Ocean tsunami caused about 227,000 deaths. Satellites measure wave height and ground movement.'],
+['Coastal impacts','Rising seas flood wetlands, erode shores, push salt water into aquifers and leave infrastructure more exposed to storms.']]);
+add('life',[
+['Biomes','Forest, grassland, desert, aquatic and tundra biomes are shaped by vegetation, soil, climate and wildlife. Species richness keeps ecosystems productive and stable.'],
+['Terrestrial ecosystems','Land communities of plants and animals are a major NASA focus, covering hydrology, forestry, topography and wildfire, and they teach us how other worlds work.'],
+['Biogeochemistry','This field studies how carbon, nitrogen and phosphorus cycle through air, water, ice, life and rock.'],
+['Carbon flux','Carbon flux is the rate and direction of carbon moving between oceans, air, land and living things, from natural exchanges to urban fossil-fuel emissions.'],
+['Why carbon matters','Carbon is in all life, CO2 shapes Earth’s heat balance, plants need it in soil and the ocean circulates it through currents and upwelling.'],
+['Why biodiversity matters','Diverse ecosystems recycle nutrients, filter pollution, protect water supplies, trap carbon and supply medicines.']]);
+add('air',[
+['Atmosphere overview','The atmosphere supplies air, absorbs harmful UV and traps heat. NASA holds thousands of datasets on aerosols, temperature, water vapor, rainfall and storms.'],
+['Humidity','Absolute humidity is grams of vapor per cubic meter; specific is grams per kilogram of air; relative is the percent of the maximum at that temperature. It helps predict storms and fire risk.'],
+['What air is made of','Air is about 78% nitrogen and 21% oxygen plus trace gases, and its mix stays nearly constant up to 50 km, except for variable water vapor.'],
+['Fog','The Grand Banks off Newfoundland see over 200 foggy days a year. Fog disrupts transport but waters plants, and some regions harvest it with special nets.']]);
+add('solid',[
+['Solid Earth overview','The Sun, gravity, the core, ocean and atmosphere all act on the planet. Gravity, geomagnetism, tectonics and ground-motion data support disaster response.'],
+['Plates and landforms','Tectonic activity builds mountains, volcanoes, plateaus and rift valleys over thousands to millions of years.'],
+['Land surface','Land covers over 57 million square miles. Satellites provide surface temperature, land cover, soil moisture and fire detection.'],
+['Wind-shaped landforms','Dunes and ventifacts form where wind meets loose sediment and little vegetation. Plant roots can stabilize coastal dunes.'],
+['Coastal landforms','Cliffs, beaches, fjords and dunes are shaped by tides, currents, rivers and wind, and they protect inland areas from flooding.']]);
+
+T.push({id:'sun',nav:'Sun and space',title:'The Sun and Earth',lead:'Earth gets about 10,000 times more energy from the Sun than all human power systems use. That energy drives weather, climate and the glowing skies at the poles.',cap:'Solar wind meets Earth’s magnetic field.',items:[
+['Solar wind and auroras','The Sun sends charged particles to Earth. When they meet the magnetosphere, magnetic reconnection speeds them into the atmosphere and creates auroras near the poles.'],
+['Solar energetic particles','When these particles connect magnetically to Earth, they ionize the upper atmosphere, create dayside auroras and can destroy ozone.'],
+['Atmosphere as a shield','Earth’s atmosphere absorbs X-rays and most UV light, ionizing its own molecules and protecting life from radiation.'],
+['Magnetic field','Particles moving along field lines pass through, while those crossing them are bent into circular paths by the Lorentz force, which shields living things.'],
+['Albedo and energy balance','Fresh snow reflects up to 90% of sunlight, open ocean under 10%. If incoming and outgoing energy match, temperature holds steady; if not, Earth warms or cools.'],
+['Sun, volcanoes and climate','Eruptions, changes in the Sun’s output and shifts in the greenhouse effect all alter Earth’s energy balance. Some studies also link cosmic rays to rainfall.']]});
+
+T.push({id:'people',nav:'People',title:'People and the planet',lead:'More than eight billion people depend on Earth’s resources. Our cities, farms and fuels now rank among the most powerful forces shaping the planet.',cap:'Cities, farms and energy reshape ecosystems.',items:[
+['Human footprint','Satellites track land turned into cities, farmland cultivation and migration. Combined with government surveys, the data reveal how human activity affects Earth.'],
+['Human-influenced ecosystems','Crop maps, urban air quality and land cover surveys show how building cities, cutting forests and burning fuel change the biosphere, for better and worse.'],
+['Disaster response','Nighttime lights reveal power outages after storms, and thermal anomaly data tracks wildfires moving toward populated areas.'],
+['Sustainable Development Goals','The UN 2030 Agenda sets 17 goals and 169 targets, measured by 230 indicators. Solutions must balance social justice, a healthy environment and a viable economy.'],
+['Greenhouse gases','Since the mid-1800s, burning fossil fuels and clearing land have raised CO2, methane and nitrous oxide. Ten of the warmest years on record have occurred since 2014.']]});
+
+const main=document.getElementById('main'),nav=document.getElementById('nav');
+T.forEach(t=>{
+ nav.insertAdjacentHTML('beforeend',`<a href="#${t.id}">${t.nav}<small>${t.items.length}</small></a>`);
+ main.insertAdjacentHTML('beforeend',`<section class="topic" id="${t.id}"><div class="wrap">
+ <h2>${t.title}</h2><p class="lead">${t.lead}</p>
+ <figure>${S[t.id==='ice'?'cryo':t.id]}<figcaption>${t.cap}</figcaption></figure>
+ <div class="acc">${t.items.map((i,k)=>`<button aria-expanded="${k==0}" aria-controls="${t.id}${k}">${i[0]}</button><div class="pan" id="${t.id}${k}"><p>${i[1]}</p></div>`).join('')}</div>
+ ${t.lab?`<div class="lab"><h3>Albedo lab</h3><p>Albedo is the share of sunlight a surface reflects. Pick a surface to compare.</p><div class="chips" id="chips"></div><div class="meter"><i id="bar"></i></div><p id="alb"></p></div>`:''}
+ </div></section>`)});
+// accordion
+function open(b,o){b.setAttribute('aria-expanded',o);const p=b.nextElementSibling;p.style.maxHeight=o?p.scrollHeight+'px':0}
+document.querySelectorAll('.acc').forEach(a=>{const bs=[...a.querySelectorAll('button')];bs.forEach((b,i)=>{if(i==0)open(b,true);b.onclick=()=>{const o=b.getAttribute('aria-expanded')!=='true';bs.forEach(x=>open(x,false));open(b,o)}})});
+// albedo lab
+const A=[['Fresh snow',90,'Reflects up to 90% of sunlight, so it stays cold.'],['Clouds',70,'Among the brightest features of Earth; they send much sunlight back to space.'],['Desert',35,'Bright sand reflects a good share of sunlight.'],['Forest',12,'Dark canopies absorb most light.'],['Open ocean',8,'Absorbs over 90% of sunlight, which is why melting ice speeds up warming.']];
+const chips=document.getElementById('chips');
+A.forEach((a,i)=>{const b=document.createElement('button');b.textContent=a[0];b.setAttribute('aria-pressed',i==0);b.onclick=()=>{[...chips.children].forEach(c=>c.setAttribute('aria-pressed',false));b.setAttribute('aria-pressed',true);show(a)};chips.append(b)});
+function show(a){document.getElementById('bar').style.width=a[1]+'%';document.getElementById('alb').textContent=a[0]+': about '+a[1]+'% reflected. '+a[2]}
+setTimeout(()=>show(A[0]),300);
+// counters
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,n=+el.dataset.n,s=el.dataset.s,d=n%1?2:0;let t=0;const f=()=>{t+=.04;const v=Math.min(1,t);el.textContent=(n*v).toFixed(d)+(s==='%+'?'%':s);if(v<1)requestAnimationFrame(f)};f()}),{threshold:.6});
+document.querySelectorAll('[data-n]').forEach(e=>io.observe(e));
+// scroll spy
+const links=[...nav.querySelectorAll('a')];
+const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('.topic').forEach(s=>spy.observe(s));
+// theme
+document.getElementById('th').onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).colorScheme.includes('dark');r.dataset.theme=d?'light':'dark'};
+
+// sidebar drawer + search
+const side=document.getElementById('side'),q=document.getElementById('q');
+document.getElementById('burger').onclick=()=>side.classList.toggle('open');
+nav.onclick=e=>{if(e.target.closest('a'))side.classList.remove('open')};
+q.oninput=()=>{const v=q.value.trim().toLowerCase();document.querySelectorAll('.topic').forEach(s=>{let n=0;s.querySelectorAll('.acc button').forEach((b,i)=>{const p=b.nextElementSibling,m=!v||(b.textContent+p.textContent).toLowerCase().includes(v);b.style.display=p.style.display=m?'':'none';if(m)n++;open(b,v?m:i==0)});s.style.display=n?'':'none'})};
+</script>
+</body>
+</html>
