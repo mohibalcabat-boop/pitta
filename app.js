@@ -1,239 +1,81 @@
-document.addEventListener("DOMContentLoaded", 
-() => {
-    // 1. Sidebar Toggle Controls
-    const menuBtn = 
-    document.getElementById("menuBtn"); 
-    const closeSidebar = 
-    document.getElementById("closeSidebar"); 
-    const sidebar = 
-    document.getElementById("sidebar"); 
-    const overlay = 
-    document.getElementById("overlay"); 
-    const sideLinks = 
-    document.querySelectorAll(".side-link"); 
-    function openMenu() {
-        sidebar.classList.add("open"); 
-        overlay.classList.add("active");
-    }
-    function closeMenu() { 
-        sidebar.classList.remove("open"); 
-        overlay.classList.remove("active");
-    }
-    menuBtn.addEventListener("click", 
-    openMenu); 
-    closeSidebar.addEventListener("click", 
-    closeMenu); 
-    overlay.addEventListener("click", 
-    closeMenu);
-    // Smooth scroll to target 
-    // bundle when clicked in 
-    // sidebar
-    sideLinks.forEach(link => { 
-        link.addEventListener("click", 
-        (e) => {
-            e.preventDefault(); 
-            const targetId = 
-            link.getAttribute("href").substring(1); 
-            const targetElement = 
-            document.getElementById(targetId); 
-            if (targetElement) {
-                targetElement.scrollIntoView({ 
-                behavior: 
-                "smooth", block: 
-                "start" });
-            }
-            closeMenu();
-        });
-    });
-    // 2. 3D Model Uploader 
-    // Handler
-    const modelFileInput = 
-    document.getElementById("modelFileInput"); 
-    const fileStatus = 
-    document.getElementById("fileStatus"); 
-    const modelMessage = 
-    document.getElementById("modelMessage"); 
-    modelFileInput.addEventListener("change", 
-    (e) => {
-        const file = 
-        e.target.files[0]; if 
-        (file) {
-            fileStatus.textContent 
-            = `Loaded: 
-            ${file.name} 
-            (${(file.size / 
-            1024).toFixed(1)} 
-            KB)`; 
-            modelMessage.innerHTML 
-            = `<strong>3D Asset 
-            Attached 
-            successfully:</strong> 
-            ${file.name}<br>Rendered 
-            inside the 
-            interactive 3D Earth 
-            Environment window.`; 
-            closeMenu();
-        }
-    });
-    // 3. 10 Comprehensive 
-    // Bundles with Exact 
-    // Infographics & 70 Topics 
-    // (Plain Text Headings)
-    const scienceBundles = [ { 
-            id: "bundle-1", 
-            title: "Bundle 01: 
-            Climate Dynamics & 
-            Solar-Earth 
-            Interaction", 
-            description: "Earth's 
-            climate system 
-            functions as an 
-            intricate 
-            thermodynamic engine 
-            heavily driven by 
-            incoming solar 
-            radiation, axial tilt 
-            variations, and 
-            complex orbital 
-            mechanics. The 
-            intricate interplay 
-            between the Sun, 
-            Earth, and Moon 
-            dictates seasonal 
-            fluctuations, diurnal 
-            day-night cycles, and 
-            the precise angles of 
-            direct versus 
-            indirect solar energy 
-            absorption across 
-            equatorial and polar 
-            latitudes. Utilizing 
-            multi-decadal 
-            satellite observation 
-            records from NASA's 
-            advanced orbital 
-            instruments, 
-            researchers 
-            systematically track 
-            planetary albedo 
-            shifts, greenhouse 
-            gas radiative forcing 
-            feedbacks, and 
-            thermal equilibrium 
-            dynamics across both 
-            land and oceanic 
-            surfaces. 
-            Understanding these 
-            fundamental 
-            solar-terrestrial 
-            mechanics allows 
-            climatologists to 
-            project regional 
-            weather variations, 
-            long-term atmospheric 
-            heating trends, and 
-            energy balance 
-            alterations with 
-            exceptional 
-            mathematical 
-            precision.", image: 
-            "images/125306.jpg", 
-            fallbackImage: 
-            "images/125304.jpg", 
-            imageCaption: 
-            "Infographic: How 
-            Sun, Earth and Moon 
-            Interact, Day/Night & 
-            Lunar Phases", 
-            topics: ["1. 
-            Planetary Albedo 
-            Shifts", "2. 
-            Radiative Forcing 
-            Metrics", "3. 
-            Tropospheric Warming 
-            Trends", "4. 
-            Greenhouse Gas 
-            Spectroscopy", "5. 
-            Cloud Feedback 
-            Mechanisms", "6. 
-            Urban Heat Island 
-            Telemetry", "7. 
-            Paleoclimate Ice Core 
-            Records"]
-        },
-        { id: "bundle-2", title: 
-            "Bundle 02: 
-            Atmospheric 
-            Circulation & 
-            Stratospheric 
-            Layers", description: 
-            "The Earth's 
-            atmosphere is 
-            structurally 
-            stratified into 
-            distinct thermal, 
-            chemical, and 
-            barometric layers 
-            that protect 
-            biological organisms 
-            from lethal cosmic 
-            radiation while 
-            regulating global 
-            weather phenomena. 
-            Large-scale 
-            atmospheric 
-            circulation 
-            cells—including 
-            Hadley cells, Ferrel 
-            cells, and 
-            high-latitude polar 
-            easterlies—redistribute 
-            colossal amounts of 
-            thermal energy from 
-            the scorching 
-            equatorial regions 
-            toward the freezing 
-            poles. Continuous 
-            orbital monitoring 
-            via advanced 
-            meteorological 
-            satellites reveals 
-            critical pressure 
-            gradients, jet stream 
-            meandering patterns, 
-            and aerosol transport 
-            dynamics that govern 
-            regional 
-            precipitation 
-            distribution, severe 
-            storm tracks, and 
-            tropospheric 
-            stability across both 
-            hemispheres 
-            throughout changing 
-            seasons.", image: 
-            "images/125303.jpg", 
-            fallbackImage: 
-            "images/125312.jpg", 
-            imageCaption: 
-            "Infographic: Global 
-            Atmospheric 
-            Circulation Cells & 
-            Polar Front Jet 
-            Streams", topics: 
-            ["8. Polar Ozone 
-            Depletion", "9. 
-            Aerosol Optical 
-            Depth", "10. 
-            Stratospheric Water 
-            Vapor", "11. Volcanic 
-            Plume Dispersion", 
-            "12. Tropospheric 
-            Nitrogen Dioxide", 
-            "13. Atmospheric 
-            Boundary Layer", "14. 
-            Transboundary Dust 
-            Transport"]
-        },
-        { id: "bundle-3",
-            title: "Bundle 03: Physical Oceanography & El Niño Osc
+const 
+main=document.getElementById('main'),nav=document.getElementById('nav'); 
+T.forEach(t=>{
+ nav.insertAdjacentHTML('beforeend',`<a 
+ href="#${t.id}">${t.nav}<small>${t.items.length}</small></a>`); 
+ main.insertAdjacentHTML('beforeend',`<section 
+ class="topic" id="${t.id}"><div 
+ class="wrap"> 
+ <h2>${t.title}</h2><p 
+ class="lead">${t.lead}</p> 
+ <figure>${S[t.id==='ice'?'cryo':t.id]}<figcaption>${t.cap}</figcaption></figure> 
+ <div 
+ class="acc">${t.items.map((i,k)=>`<button 
+ aria-expanded="${k==0}" 
+ aria-controls="${t.id}${k}">${i[0]}</button><div 
+ class="pan" 
+ id="${t.id}${k}"><p>${i[1]}</p></div>`).join('')}</div> 
+ ${t.lab?`<div 
+ class="lab"><h3>Albedo 
+ lab</h3><p>Albedo is the share 
+ of sunlight a surface reflects. 
+ Pick a surface to 
+ compare.</p><div class="chips" 
+ id="chips"></div><div 
+ class="meter"><i 
+ id="bar"></i></div><p 
+ id="alb"></p></div>`:''} 
+ </div></section>`)});
+// accordion
+function 
+open(b,o){b.setAttribute('aria-expanded',o);const 
+p=b.nextElementSibling;p.style.maxHeight=o?p.scrollHeight+'px':0} 
+document.querySelectorAll('.acc').forEach(a=>{const 
+bs=[...a.querySelectorAll('button')];bs.forEach((b,i)=>{if(i==0)open(b,true);b.onclick=()=>{const 
+o=b.getAttribute('aria-expanded')!=='true';bs.forEach(x=>open(x,false));open(b,o)}})});
+// albedo lab
+const A=[['Fresh 
+snow',90,'Reflects up to 90% of 
+sunlight, so it stays 
+cold.'],['Clouds',70,'Among the 
+brightest features of Earth; they 
+send much sunlight back to 
+space.'],['Desert',35,'Bright 
+sand reflects a good share of 
+sunlight.'],['Forest',12,'Dark 
+canopies absorb most 
+light.'],['Open ocean',8,'Absorbs 
+over 90% of sunlight, which is 
+why melting ice speeds up 
+warming.']]; const 
+chips=document.getElementById('chips'); 
+A.forEach((a,i)=>{const 
+b=document.createElement('button');b.textContent=a[0];b.setAttribute('aria-pressed',i==0);b.onclick=()=>{[...chips.children].forEach(c=>c.setAttribute('aria-pressed',false));b.setAttribute('aria-pressed',true);show(a)};chips.append(b)}); 
+function 
+show(a){document.getElementById('bar').style.width=a[1]+'%';document.getElementById('alb').textContent=a[0]+': 
+about '+a[1]+'% reflected. 
+'+a[2]} 
+setTimeout(()=>show(A[0]),300);
+// counters
+const io=new 
+IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const 
+el=e.target,n=+el.dataset.n,s=el.dataset.s,d=n%1?2:0;let 
+t=0;const f=()=>{t+=.04;const 
+v=Math.min(1,t);el.textContent=(n*v).toFixed(d)+(s==='%+'?'%':s);if(v<1)requestAnimationFrame(f)};f()}),{threshold:.6}); 
+document.querySelectorAll('[data-n]').forEach(e=>io.observe(e));
+// scroll spy
+const 
+links=[...nav.querySelectorAll('a')]; 
+const spy=new 
+IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 
+0px -55% 0px'}); 
+document.querySelectorAll('.topic').forEach(s=>spy.observe(s));
+// theme
+document.getElementById('th').onclick=()=>{const 
+r=document.documentElement,d=getComputedStyle(r).colorScheme.includes('dark');r.dataset.theme=d?'light':'dark'};
+// sidebar drawer + search
+const 
+side=document.getElementById('side'),q=document.getElementById('q'); 
+document.getElementById('burger').onclick=()=>side.classList.toggle('open'); 
+nav.onclick=e=>{if(e.target.closest('a'))side.classList.remove('open')};
+q.oninput=()=>{const v=q.value.trim().toLowerCase();document.querySelectorAll('.topic').forEach(s=>{let n=0;s.querySelectorAll('.acc button').forEach((b,i)=>{const p=b.nextElementSibling,m=!v||(b.textContent+p.textContent).toLowerCase().includes(v);b.style.display=p.style.display=m?'':'none';if(m)n++;open(b,v?m:i==0)});s.style.display=n?'':'none'})};
