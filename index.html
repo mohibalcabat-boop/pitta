@@ -69,6 +69,13 @@ body{display:grid;grid-template-columns:270px minmax(0,1fr)}
 @media (max-width:860px){body{display:block}body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hero);z-index:31}
 .side{position:fixed;inset:0 auto 0 0;width:280px;height:100%;z-index:30;transform:translateX(-100%);transition:transform .25s}.side.open{transform:none}
 .burger{display:block;position:sticky;top:env(safe-area-inset-top,0px);z-index:25;width:100%;background:var(--hero);color:var(--herotxt);border:0;text-align:left;padding:14px 18px;font:600 16px Sora,sans-serif}}
+
+.snd{display:inline-flex;gap:8px;align-items:center;margin:0 0 24px;border:1px solid var(--teal);background:var(--surface);color:var(--ink);border-radius:30px;padding:9px 16px;font:600 15px "Source Sans 3",sans-serif;cursor:pointer}
+.snd[aria-pressed=true]{background:var(--teal);color:#fff}
+.btn.ghost{background:none;border:1px solid #c9b48f;color:inherit;margin-left:6px;cursor:pointer;font:600 17px "Source Sans 3",sans-serif}
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);max-width:420px;width:calc(100% - 32px);padding:24px}
+dialog::backdrop{background:#000a}
+dialog .btn.ghost{color:var(--ink);border-color:var(--line)}
 </style>
 </head>
 <body>
@@ -77,7 +84,7 @@ body{display:grid;grid-template-columns:270px minmax(0,1fr)}
 <div class="brand">Team Pitta</div>
 <input id="q" type="search" placeholder="Search topics" aria-label="Search topics">
 <nav id="nav" aria-label="Sections"></nav>
-<div class="crew">Mahir Aamir<br>Mohamed Aladdin<br><button id="th" aria-label="Toggle dark mode">Switch theme</button></div>
+<div class="crew">Mahir Aamir<br>Mohamed Aladdin<br><button id="m3b">🌐 3D Earth model</button><button id="snd">🔇 Ambient sound: Off</button><button id="th" aria-label="Toggle dark mode">Switch theme</button></div>
 </aside>
 <div class="page">
 
@@ -86,7 +93,7 @@ body{display:grid;grid-template-columns:270px minmax(0,1fr)}
 <h1>Earth as one connected system</h1>
 <p>Our NASA hackathon project turns Earth-observation science into a clear, explorable guide: from rivers and glaciers to oceans, life, air and the rock beneath our feet.</p>
 <div class="team"><span>Mahir Aamir</span><span>Mohamed Aladdin</span></div>
-<a class="btn" href="#water">Start exploring</a>
+<a class="btn" href="#water">Start exploring</a> <button class="btn ghost" id="m3h">🌐 3D model</button>
 </div>
 <svg class="globe" viewBox="0 0 200 200" role="img" aria-label="Stylised Earth globe"><defs><radialGradient id="g" cx=".35" cy=".3"><stop offset="0" stop-color="#4fc3dd"/><stop offset="1" stop-color="#0c4f78"/></radialGradient></defs><circle cx="100" cy="100" r="92" fill="url(#g)"/><g fill="#6fbf73" opacity=".9"><path d="M50 60q25-18 40 0t-6 30-34 4z"/><path d="M110 100q30-12 44 10t-14 42-36-8z"/><path d="M70 130q14-6 18 10t-12 18z"/></g><circle cx="100" cy="100" r="92" fill="none" stroke="#9fe0ef" stroke-opacity=".4" stroke-width="3"/></svg>
 </div></header>
@@ -103,6 +110,7 @@ body{display:grid;grid-template-columns:270px minmax(0,1fr)}
 <footer><p><b>Team Pitta</b></p><p>Built by Mahir Aamir and Mohamed Aladdin</p></footer>
 </div>
 
+<dialog id="m3d"><h3>3D Earth model</h3><p>The interactive 3D model lives on Gemini and cannot be shown inside this page, so it opens in a new tab.</p><p><a class="btn" href="https://share.gemini.google/FhOZCVlEnAST" target="_blank" rel="noopener">Open the 3D model</a> <button id="m3x" class="btn ghost">Close</button></p></dialog>
 <script>const S={
 water:'<svg viewBox="0 0 800 300"><defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe3f2"/><stop offset="1" stop-color="#eaf6fa"/></linearGradient></defs><rect width="800" height="300" fill="url(#a)"/><path d="M0 200q120-70 240-20t240-10 320-50v180H0z" fill="#6aa86b"/><path d="M0 250q200-60 400-10t400-20v80H0z" fill="#2c8fb5"/><path d="M0 270q200-40 400 0t400-10" stroke="#fff" stroke-opacity=".5" stroke-width="3" fill="none"/><g fill="#fff" opacity=".9"><ellipse cx="140" cy="60" rx="50" ry="16"/><ellipse cx="600" cy="80" rx="64" ry="18"/></g><path d="M300 120l10 22 10-22z" fill="#2c8fb5"/></svg>',
 cryo:'<svg viewBox="0 0 800 300"><rect width="800" height="300" fill="#cfe9f6"/><path d="M0 300V190l120-110 90 70 110-90 160 150 120-80 200 120v50z" fill="#fff"/><path d="M0 300V230l150-60 140 50 140-40 160 60 210-50v110z" fill="#bfdff0"/><path d="M0 270q200-30 400 0t400-8v38H0z" fill="#1e6f97"/><path d="M560 252l30-50 40 50z" fill="#fff"/></svg>',
@@ -244,6 +252,55 @@ const side=document.getElementById('side'),q=document.getElementById('q');
 document.getElementById('burger').onclick=()=>side.classList.toggle('open');
 nav.onclick=e=>{if(e.target.closest('a'))side.classList.remove('open')};
 q.oninput=()=>{const v=q.value.trim().toLowerCase();document.querySelectorAll('.topic').forEach(s=>{let n=0;s.querySelectorAll('.acc button').forEach((b,i)=>{const p=b.nextElementSibling,m=!v||(b.textContent+p.textContent).toLowerCase().includes(v);b.style.display=p.style.display=m?'':'none';if(m)n++;open(b,v?m:i==0)});s.style.display=n?'':'none'})};
+
+// Ambient soundscapes per section. Uses audio/<id>.mp3 if present, otherwise synthesizes the sound live (Web Audio).
+const AC=window.AudioContext||window.webkitAudioContext;
+const NAMES={earth:'calm planetary drone',water:'flowing river',ice:'icy wind and cracking ice',ocean:'ocean waves',life:'forest birds and insects',air:'wind and distant thunder',solid:'deep Earth rumble',sun:'space hum',people:'city ambience'};
+let ctx,master,nw,nb,cur=null,on=false,sec='earth',tok=0,live=[];
+function init(){
+ ctx=new AC();master=ctx.createGain();master.gain.value=.7;master.connect(ctx.destination);
+ const len=ctx.sampleRate*4;nw=ctx.createBuffer(1,len,ctx.sampleRate);nb=ctx.createBuffer(1,len,ctx.sampleRate);
+ const a=nw.getChannelData(0),b=nb.getChannelData(0);let l=0;
+ for(let i=0;i<len;i++){const w=Math.random()*2-1;a[i]=w;l=(l+.02*w)/1.02;b[i]=l*3.5}
+}
+const N=(buf,type,f,q,g)=>{const s=ctx.createBufferSource();s.buffer=buf;s.loop=true;const fl=ctx.createBiquadFilter();fl.type=type;fl.frequency.value=f;fl.Q.value=q;const gn=ctx.createGain();gn.gain.value=g;s.connect(fl);fl.connect(gn);s.start();live.push(s);return{fl,gn}};
+const O=(type,f)=>{const o=ctx.createOscillator();o.type=type;o.frequency.value=f;o.start();live.push(o);return o};
+const L=(r,d,p)=>{const o=O('sine',r),g=ctx.createGain();g.gain.value=d;o.connect(g);g.connect(p)};
+const R=(fn,a,b)=>{let t;const go=()=>{fn();t=setTimeout(go,a+Math.random()*(b-a))};t=setTimeout(go,a/2);return()=>clearTimeout(t)};
+const env=(out,t,att,dur,peak,node)=>{const g=ctx.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+att);g.gain.exponentialRampToValueAtTime(.0005,t+dur);node.connect(g);g.connect(out)};
+const burst=(out,buf,type,f,dur,peak)=>{const t=ctx.currentTime,s=ctx.createBufferSource();s.buffer=buf;const fl=ctx.createBiquadFilter();fl.type=type;fl.frequency.value=f;s.connect(fl);env(out,t,Math.min(.05,dur/3),dur,peak,fl);s.start(t,Math.random()*3);s.stop(t+dur+.1)};
+const tone=(out,f0,f1,dur,peak,t0=0)=>{const t=ctx.currentTime+t0,o=ctx.createOscillator();o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+dur);env(out,t,.02,dur,peak,o);o.start(t);o.stop(t+dur+.05)};
+const SC={
+water:o=>{const a=N(nw,'bandpass',900,.6,.5),b=N(nw,'highpass',3500,.5,.1);L(.3,.2,a.gn.gain);L(.7,.05,b.gn.gain);a.gn.connect(o);b.gn.connect(o);return R(()=>{const f=400+Math.random()*700;tone(o,f,f*2.2,.09,.05)},200,900)},
+ice:o=>{const a=N(nw,'bandpass',500,.8,.3);L(.08,.15,a.gn.gain);a.gn.connect(o);return R(()=>burst(o,nw,'highpass',2500,.1,.35),2500,7000)},
+ocean:o=>{const a=N(nb,'lowpass',500,.7,1.3),b=N(nw,'highpass',2500,.5,.12);L(.11,.9,a.gn.gain);L(.11,.1,b.gn.gain);a.gn.connect(o);b.gn.connect(o);return()=>{}},
+life:o=>{const a=N(nw,'bandpass',600,.5,.1),c=O('sine',4200),cg=ctx.createGain();cg.gain.value=.012;L(.15,.05,a.gn.gain);L(22,.012,cg.gain);a.gn.connect(o);c.connect(cg);cg.connect(o);return R(()=>{for(let k=0;k<2+Math.random()*3;k++){const f=2200+Math.random()*2000;tone(o,f,f*(.6+Math.random()*.9),.14,.1,k*.17)}},900,3500)},
+air:o=>{const a=N(nw,'bandpass',400,.7,.5);L(.1,.3,a.gn.gain);L(.07,200,a.fl.frequency);a.gn.connect(o);return R(()=>burst(o,nb,'lowpass',150,3.5,1.6),9000,18000)},
+solid:o=>{const a=N(nb,'lowpass',90,1,3.2);L(.15,1.4,a.gn.gain);a.gn.connect(o);return R(()=>burst(o,nw,'bandpass',700,.5,.25),4000,9000)},
+sun:o=>{[55,82.5,110.4,165].forEach((f,i)=>{const s=O('sine',f),g=ctx.createGain();g.gain.value=.07;L(.05+i*.04,.03,g.gain);s.connect(g);g.connect(o)});[880,1318].forEach((f,i)=>{const s=O('sine',f),g=ctx.createGain();g.gain.value=.01;L(.2+i*.13,.01,g.gain);s.connect(g);g.connect(o)});return()=>{}},
+people:o=>{const a=N(nb,'lowpass',380,.7,1.8),b=N(nw,'bandpass',1200,.6,.04);L(.2,.5,a.gn.gain);a.gn.connect(o);b.gn.connect(o);return R(()=>{tone(o,420,420,.35,.04);tone(o,530,530,.35,.04,.02)},8000,20000)}};
+SC.earth=SC.sun;
+function fileTry(id){return new Promise(r=>{const a=new Audio('audio/'+id+'.mp3');a.loop=true;let done=0;const f=v=>{if(!done){done=1;r(v)}};a.oncanplaythrough=()=>{if(!done)a.play().then(()=>f(a)).catch(()=>f(null))};a.onerror=()=>f(null);setTimeout(()=>f(null),1500);a.load()})}
+function stopCur(){if(cur){cur.stop();cur=null}}
+async function play(id){
+ if(!ctx)init();ctx.resume();const my=++tok;stopCur();
+ const f=await fileTry(id);if(my!==tok){if(f)f.pause();return}
+ if(f){cur={id,stop:()=>f.pause()}}
+ else{const g=ctx.createGain();g.gain.value=0;g.connect(master);g.gain.linearRampToValueAtTime(1,ctx.currentTime+1.5);live=[];const clr=SC[id](g),mine=live;
+  cur={id,stop:()=>{clr();g.gain.cancelScheduledValues(ctx.currentTime);g.gain.setValueAtTime(g.gain.value,ctx.currentTime);g.gain.linearRampToValueAtTime(0,ctx.currentTime+1);setTimeout(()=>{mine.forEach(n=>{try{n.stop()}catch(e){}});g.disconnect()},1100)}}}
+ ui()}
+const gb=document.getElementById('snd');
+document.querySelectorAll('.topic').forEach(s=>s.querySelector('.lead').insertAdjacentHTML('afterend',`<button class="snd" data-id="${s.id}" aria-pressed="false"><span>🔊</span> Listen: ${NAMES[s.id]}</button>`));
+function ui(){document.querySelectorAll('.snd').forEach(b=>{const p=!!cur&&cur.id===b.dataset.id;b.setAttribute('aria-pressed',p);b.firstChild.textContent=p?'⏸':'🔊'});gb.textContent=on?'🔊 Ambient sound: On':'🔇 Ambient sound: Off'}
+document.addEventListener('click',e=>{const b=e.target.closest('.snd');if(!b)return;if(on&&cur&&cur.id===b.dataset.id){on=false;stopCur();ui()}else{on=true;play(b.dataset.id)}});
+gb.onclick=()=>{on=!on;if(on)play(sec);else{stopCur();ui()}};
+const sp=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){sec=e.target.id;if(on&&(!cur||cur.id!==sec))play(sec)}}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('.topic').forEach(s=>sp.observe(s));
+document.addEventListener('visibilitychange',()=>{if(ctx)document.hidden?ctx.suspend():on&&ctx.resume()});
+// 3D model window
+const dlg=document.getElementById('m3d');
+['m3b','m3h'].forEach(i=>document.getElementById(i).onclick=()=>{dlg.showModal();side.classList.remove('open')});
+document.getElementById('m3x').onclick=()=>dlg.close();
 </script>
 </body>
 </html>
